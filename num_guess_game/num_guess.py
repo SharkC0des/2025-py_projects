@@ -17,10 +17,11 @@ while True:
 
 
 
-"""
-
-    - given try and except
-        Include condition in the try and not after the except
-        or else code will be unreachable/not initialized
-
-"""
+# """
+#
+#     - given try and except
+#         Include condition in the try and not after the except
+#         or else code will be unreachable/not initialized
+#
+# """
+# Next time add a feature where given the inputted number, the program slices down the range.
