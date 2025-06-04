@@ -1,32 +1,65 @@
 import random
 
-options = ("r", "p", "s")
+options = ('r', 'p', 's')
 
+def get_user_choice():
+    while True:
+        user_choice = input("Choose r, p, or s: ")
+        if user_choice in options:
+            return user_choice
+        else:
+            print("Invalid Choice. Choose again")
 
-cpu = random.choice(options)
-print(f"Computer chose {cpu}")
-
-while True:
-    prompt = input("Type: r, p, or s: ").lower()
-    if prompt not in options:
+def made_choice(user, cpu):
+    print(f'You chose {user} ')
+    print(f"Computer chose {cpu} ")
+def winner(user, cpu):
+    if user not in options:
         print("Invalid Choice!")
-        continue
 
-    if prompt == cpu:
+
+    if user == cpu:
         print("Draw!")
 
     elif (
-            (prompt == "r" and cpu == "s") or
-            (prompt == "p" and cpu == "r") or
-            (prompt == "s" and cpu == "p")
+            (user == "r" and cpu == "s") or
+            (user == "p" and cpu == "r") or
+            (user == "s" and cpu == "p")
     ):
         print("You Win!")
     else:
         print("Computer Wins!")
 
-    want_continue = input("Would you like to continue? y/n ")
-    if want_continue == "n":
-        break
+def gameplay():
+    while True:
+
+        user = get_user_choice()
+        cpu = random.choice(options)
+        made_choice(user,cpu)
+        winner(user, cpu)
+
+        want_continue = input("Would you like to continue? (y/n) ")
+        if want_continue == "n":
+            break
+
+gameplay()
+
+
+
+
+
+
+# options = ("r", "p", "s")
+#
+#
+# cpu = random.choice(options)
+# print(f"Computer chose {cpu}")
+#
+#
+#
+#
+#
+# while True:
 
 
 
@@ -36,31 +69,4 @@ while True:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-        # if prompt == "r" and cpu != "p":
-        #     print(prompt)
-        #     print(cpu)
-        #     print("You Win!")
-        # else:
-        #     print("Computer Wins!")
-        #
-        # if prompt == "p" and cpu != "s":
-        #     print("You Win!")
-        # else:
-        #     print("Computer Wins!")
-        #
-        # if prompt == "s" and cpu != "r":
-        #     print("You Win!")
-        # else:
-        #     print("Computer Wins!")
 
