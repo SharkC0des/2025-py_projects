@@ -15,37 +15,44 @@ def player():
     roll_dice = input("Roll the dice? y/n: ").lower()
     if roll_dice == "y":
         while True:
-            num = random.randint(1, 6)
-            if num != 1:
-                print(f"You rolled: {num}")
-                player_score += num
-                nxt_move = input("Roll or Hold? ")
-                if nxt_move == "roll":
-                    continue
-            else:
 
-                print(f"You Rolled: {num}"
-                      f"\nPlayer's Score: {player_score}\nComputer's Score: {cpu_score}")
-                print("Computer's turn!")
+                num = random.randint(1, 6)
+                if num != 1:
+                    print(f"You rolled: {num}")
+                    player_score += num
+                    print(f"\nPlayer's Score: {player_score}\nComputer's Score: {cpu_score}")
+                    if player_score >= 100:
+                        print("You Wins!")
+                        break
 
-
-                while True:
-                    num = dice_num
-                    if num != 1:
-                        print(f"Computer rolled: {num}")
-                        cpu_score += num
-                    cpu_choice = random.choice(choices)
-                    if cpu_choice == "Roll":
-                        print(f"Computer chose to Roll\n"
-                              f"Computer Rolled: {num}")
-                        print(f"\nPlayer Score: {player_score}\n"
-                              f"Computer Score: {cpu_score}")
+                    nxt_move = input("Roll or Hold? ")
+                    if nxt_move == "roll":
                         continue
-                    else:
-                        print(f"Computer chose to Hold")
-                        print(f"\nPlayer Score: {player_score}\n"
-                              f"Computer Score: {cpu_score}")
-                        player()
+                    elif num == 1 or nxt_move == "hold":
+                        if num == 1:
+                            print(f"You rolled a {num}")
+                        while True:
+                            if num != 1:
+                                print(f"\nComputer rolled: {num}")
+                                cpu_score += num
+                                if cpu_score >= 100:
+                                    print("Computer Win!")
+                                    break
+                                print(f"Player Score: {player_score}\n"
+                                      f"Computer Score: {cpu_score}")
+                                cpu_choice = random.choice(choices)
+                                if cpu_choice == "Roll":
+                                    print(f"Computer chose to Roll\n")
+                                    continue
+                                else:
+                                    print(f"Computer chose to Hold")
+                                    print(f"\nPlayer Score: {player_score}\n"
+                                      f"Computer Score: {cpu_score}")
+                                    break
+
+
+    print(player_score)
+
 
 
 
