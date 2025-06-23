@@ -26,66 +26,90 @@ def subtraction(num1, num2):
 def multiply(muilt_n_div):
     return f"{muilt_n_div} * {muilt_n_div} = "
 
-def divide(mult_n_div):
-    return f"{mult_n_div} / {mult_n_div} = "
+def divide(num2, div_num2):
+    return f"{num2} / {div_num2} = "
 def gameplay():
     count = 0
+
     while True:
         num1 = random.randint(1, 100)
         num2 = random.randint(1, 100)
-        mult_n_div = random.randint(1, 10)
+        mult_n_div = random.randint(1, 12)
+        div_num2 = random.randint(1, 10)
 
         add = addition(num1, num2)
         sub = subtraction(num1, num2)
         times = multiply(mult_n_div)
-        div = divide(mult_n_div)
-
-        sum = num1 + num2
-        diff = num1 - num2
-        product = mult_n_div * mult_n_div
-        quotient = mult_n_div / mult_n_div
+        div = divide(num2, div_num2)
 
         op_list = [add, sub, times, div]
         choose = random.choice(op_list)
 
-        if choose == add:
-            equation = int(input(choose))
-            if sum == equation:
-                print("Correct")
-                count+= 1
-                continue
-            print("incorrect")
-            break
+        while True:
+            if choose != div:
+                break
+            else:
+                num2 = random.randint(1, 144)
+                div_num2 = random.randint(1, 12)
+                if num2 % div_num2 != 0:
+                    continue
+                else:
+                    div = divide(num2, div_num2)
 
-        elif choose == sub:
-            if num1 < num2:
+
+        add_sum = num1 + num2
+        diff = num2 - num1
+        if num1 > num2:
+            diff = num1 - num2
+
+        product = mult_n_div * mult_n_div
+        quotient = num2 / div_num2
+
+        try:
+            if choose == add:
+                equation = int(input(choose))
+                if add_sum == equation:
+                    print("Correct")
+                    count+= 1
+                    continue
+                print("incorrect")
+                break
+
+            elif choose == sub and num2 > num1:
                 equation = int(input(f"{num2} - {num1} = "))
-            equation = int(input(f"{num2} - {num1} = "))
-            if diff == equation:
-                print("Correct")
-                count += 1
-                continue
-            print("Incorrect")
-            break
-        elif choose == times:
-            equation = int(input(choose))
-            if product == equation:
-                print("Correct")
-                count += 1
-                continue
-            print("Incorrect")
-            break
-        elif choose == div:
-            if num1 < num2:
-                equation = int(input(f"{num2} / {num1} = "))
-            equation = int(input(choose))
-            if math.floor(quotient) == math.floor(equation):
-                print("Correct")
-                count += 1
-                continue
-            print("Incorrect")
-            break
+                if diff == equation:
+                    print("Correct")
+                    count += 1
+                    continue
+                print("Incorrect")
+                print(diff)
+                break
+            elif choose == times:
+                equation = int(input(choose))
+                if product == equation:
+                    print("Correct")
+                    count += 1
+                    continue
+                print("Incorrect")
+                break
+            elif choose == div:
+                equation = int(input(f"{num2} / {div_num2} = "))
+                #print(quotient)
+                if quotient == equation:
+                    print("Correct")
+                    count += 1
+                    continue
+                print("Incorrect")
+                break
+
+
+        except ValueError:
+            print("Insert a number")
+            continue
+
     print(f"You answered {count} problems correctly")
+
+
 
 
 
